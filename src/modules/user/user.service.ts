@@ -59,7 +59,7 @@ export class UserService {
     return `This action removes a #${id} user`;
   }
 
-  uploadAvatarLocal(file: Express.Multer.File) {
+  uploadAvatar(file: Express.Multer.File) {
     console.log(file);
     return 'upload avatar local';
   }

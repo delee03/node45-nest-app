@@ -1,23 +1,22 @@
-// import multer from "multer";
-// // const upload = multer({ dest: "images/" });
-// import pkg from "cloudinary";
-// const { v2: cloudinary } = pkg;
-// import { CloudinaryStorage } from "multer-storage-cloudinary";
+import multer from 'multer';
+// const upload = multer({ dest: "images/" });
+import { v2 as cloudinary } from 'cloudinary';
 
-// // Configuration
-// cloudinary.config({
-//     cloud_name: "fuderrpham",
-//     api_key: "865592985827542",
-//     api_secret: process.env.CLOUDIARY_SECRET, // Click 'View API Keys' above to copy your API secret
-// });
-// //env: CLOUDINARY_URL=cloudinary://865592985827542:Y4bTq2JKnHagV-lg3-PU5mVt_mc@fuderrpham
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
-// const storage = new CloudinaryStorage({
-//     cloudinary: cloudinary,
-//     params: {
-//         folder: "images",
-//     },
-// });
+// Configuration
+cloudinary.config({
+  cloud_name: 'fuderrpham',
+  api_key: '865592985827542',
+  api_secret: process.env.CLOUDIARY_SECRET, // Click 'View API Keys' above to copy your API secret
+});
+//env: CLOUDINARY_URL=cloudinary://865592985827542:Y4bTq2JKnHagV-lg3-PU5mVt_mc@fuderrpham
 
-// const uploadCloud = multer({ storage: storage });
-// export default uploadCloud;
+const storageCloud = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'images',
+  } as any,
+});
+
+export default storageCloud;

@@ -7,7 +7,7 @@ import * as fs from 'fs';
 fs.mkdirSync('images/', { recursive: true });
 
 //cách 2:
-const storage = diskStorage({
+const storageLocal = diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'images');
   },
@@ -21,4 +21,4 @@ const storage = diskStorage({
   },
 });
 
-export default storage;
+export default storageLocal;

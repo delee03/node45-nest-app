@@ -11,6 +11,7 @@ import {
 import { VideoTypeService } from './video-type.service';
 import { access } from 'fs';
 import { Request } from 'express';
+import { ApiTags } from '@nestjs/swagger';
 
 export type TVideoType = {
   type_name: string;
@@ -18,6 +19,7 @@ export type TVideoType = {
 };
 
 @Controller('video')
+@ApiTags('VideoTypes')
 export class VideoTypeController {
   constructor(public videoTypeService: VideoTypeService) {}
 
@@ -27,9 +29,9 @@ export class VideoTypeController {
     @Headers('accessToken') accessToken: string,
     @Req() req: Request,
   ) {
-    console.log(page);
-    console.log(accessToken);
-    console.log({ req });
+    // console.log(page);
+    // console.log(accessToken);
+    // console.log({ req });
     return await this.videoTypeService.getVideoType();
   }
 
