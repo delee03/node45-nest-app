@@ -14,6 +14,7 @@ import {
   FileTypeValidator,
   ParseFilePipeBuilder,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -43,8 +44,12 @@ export class UserController {
   }
 
   @Get()
-  async findAll(@Req() req: Request): Promise<any> {
-    return await this.userService.findAll(req);
+  @ApiOperation({ summary: 'Get all users' })
+  async findAll(
+    @Query('page') page: number,
+    @Query('pageSize') pageSize: number,
+  ): Promise<any> {
+    return await this.userService.findAll(page, pageSize);
   }
 
   @Get(':id')

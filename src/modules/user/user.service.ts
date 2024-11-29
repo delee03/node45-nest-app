@@ -11,19 +11,16 @@ export class UserService {
     return 'This action adds a new user';
   }
 
-  async findAll(req: Request) {
-    let { page, pageSize } = req.query as any;
+  async findAll(page: number, pageSize: number) {
+    // let { page, pageSize } = req.query as any;
     console.log(page, pageSize);
-
-    // pageIndex = +pageIndex;
-    // pageSize = +pageSize;
 
     page = Number(page) > 0 ? Number(page) : 1;
     pageSize = Number(pageSize) > 0 ? Number(pageSize) : 3;
 
     const skip = (page - 1) * pageSize;
 
-    console.log(req.query, skip);
+    //console.log(req.query, skip);
 
     const totalItems = await this.prisma.users.count();
     const totalPages = Math.ceil(totalItems / pageSize);
