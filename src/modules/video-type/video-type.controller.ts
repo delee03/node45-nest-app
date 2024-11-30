@@ -15,6 +15,7 @@ import { Request } from 'express';
 import { ApiTags } from '@nestjs/swagger';
 import CreateVideoTypeDto from './dto/create-videotype.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 // export type TVideoType = {
 //   type_name: string;
@@ -26,7 +27,8 @@ import { AuthGuard } from '@nestjs/passport';
 export class VideoTypeController {
   constructor(public videoTypeService: VideoTypeService) {}
 
-  @UseGuards(AuthGuard('protect'))
+  // @UseGuards(AuthGuard('protect'))
+  // @UseGuards(JwtAuthGuard)
   @Get('video-type')
   async getVideoType(
     @Query(`pageIndex`) page: string,
@@ -36,6 +38,7 @@ export class VideoTypeController {
     // console.log(page);
     // console.log(accessToken);
     // console.log({ req });
+    console.log({ user: req.user });
     return await this.videoTypeService.getVideoType();
   }
 
