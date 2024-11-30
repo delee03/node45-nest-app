@@ -7,7 +7,12 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      stopAtFirstError: true, // Stop at first error
+      whitelist: true, // Remove non-whitelisted properties in request
+    }),
+  );
 
   const corsOptions: CorsOptions = {
     origin: '*', // Allow any origin
